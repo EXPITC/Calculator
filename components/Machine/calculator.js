@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export let result = 10
+export let result = 0
 let last = null;
 let second = 0;
 let value = ({
@@ -46,6 +46,7 @@ export const calculator = (state , number) => {
                         valueI: `${parseFloat(value.valueI) / parseFloat(value.valueII)}`
                     })
                 )
+
         }
     }
     const numHandler = () => {
@@ -124,6 +125,22 @@ export const calculator = (state , number) => {
             valueII: null
         }),
         result = 0
+    )
+    if (state === '+/-') return (
+        value = ({
+            valueI: `${parseFloat(value.valueI)*-1}`,
+            operator: null,
+            valueII: null
+        }),
+        result = value.valueI
+    )
+    if (state === '%') return (
+        value = ({
+            valueI: `${parseFloat(value.valueI)* 0.01}`,
+            operator: null,
+            valueII: null
+        }),
+        result = value.valueI
     )
     if (value.valueI != null) {
         operatorHandler()
